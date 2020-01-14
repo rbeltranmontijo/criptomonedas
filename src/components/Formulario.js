@@ -5,7 +5,7 @@ import Error from "./Error";
 
 import axios from "axios";
 
-function Formulario() {
+function Formulario({ guardarMoneda, guardarCriptomoneda }) {
   const [criptomonedas, guardarCriptomonedas] = useState([]);
   const [monedaCotizar, guardarMonedaCotizar] = useState("");
   const [criptoCotizar, guardarCriptoCotizar] = useState("");
@@ -29,13 +29,15 @@ function Formulario() {
     e.preventDefault();
 
     // Validar si ambos campos estan llenos
-    if (monedaCotizar === "" || criptoCotizar == "") {
+    if (monedaCotizar === "" || criptoCotizar === "") {
       guardarError(true);
       return;
     }
 
     // Pasar los datos al componente principal
     guardarError(false);
+    guardarMoneda(monedaCotizar);
+    guardarCriptomoneda(criptoCotizar);
   };
 
   // Mostrar el error en caso que exista
